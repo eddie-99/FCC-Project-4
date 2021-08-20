@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Technical Documentation Page</title>
+</head>
+<body>
+    <nav id="navbar">
+        <header>Js DOM Documentación</header>
+        <a class="nav-link" href="#Introducción_al_DOM">Introducción al DOM</a>
+        <a class="nav-link" href="#¿Qué_es_el_DOM?">¿Qué es el DOM?</a>
+        <a class="nav-link" href="#DOM_y_JavaScript">DOM y JavaScript</a>
+        <a class="nav-link" href="#Accediendo_al_DOM">Accediendo al DOM</a>
+        <a class="nav-link" href="#Tipos_de_datos_fundamentales">Tipos de datos fundamentales</a>
+    </nav>
+
+    <main id="main-doc" class="conteiner_main">
+        <section class="main-section" id="Introducción_al_DOM">
+            <header>Introducción al DOM</header>
+            <article>
+                <p>
+                    El modelo de objetos de documento ( DOM ) es la representación de datos de los objetos que componen la estructura y el contenido de un documento en la web. Esta guía presentará el DOM, verá cómo el DOM representa un documento HTML en la memoria y cómo utilizar las API para crear aplicaciones y contenido web.
+                </p>
+            </article>
+        </section>
+
+        <section class="main-section" id="¿Qué_es_el_DOM?">
+            <header>¿Qué es el DOM?</header>
+            <article>
+                <p>El Modelo de objetos de documento (DOM) es una interfaz de programación para documentos web. Representa la página para que los programas puedan cambiar la estructura, el estilo y el contenido del documento. El DOM representa el documento como nodos y objetos; de esa manera, los lenguajes de programación pueden interactuar con la página.</p>
+                <p>Una página web es un documento que puede mostrarse en la ventana del navegador o como fuente HTML. En ambos casos, es el mismo documento pero la representación del Modelo de Objetos de Documento (DOM) permite manipularlo. Como representación orientada a objetos de la página web, se puede modificar con un lenguaje de programación como JavaScript.</p>
+                <p>Por ejemplo, DOM especifica que el querySelectorAllmétodo en este fragmento de código debe devolver una lista de todos los < p > elementos del documento:</p>
+
+                <code>
+                    const paragraphs = document.querySelectorAll("p");
+                    // paragraphs[0] is the first < p > element
+                </code>
+                <code>
+                    // paragraphs[1] is the second < p > element, etc.
+                    alert(paragraphs[0].nodeName);
+                </code>
+
+                <p>Todas las propiedades, métodos y eventos disponibles para manipular y crear páginas web están organizados en objetos. Por ejemplo, el documentobjeto que representa el documento en sí, cualquier tableobjeto que implemente la HTMLTableElementinterfaz DOM para acceder a tablas HTML, etc., son todos objetos.</p>
+                <p>El DOM se construye utilizando varias API que funcionan juntas. El DOM principal define las entidades que describen cualquier documento y los objetos que contiene. Esto se amplía según sea necesario por otras API que agregan nuevas características y capacidades al DOM. Por ejemplo, la API DOM HTML agrega soporte para representar documentos HTML en el DOM principal, y la API SVG agrega soporte para representar documentos SVG.</p>
+            </article>
+        </section>
+
+        <section class="main-section" id="DOM_y_JavaScript">
+            <header>DOM y JavaScript</header>
+            <article>
+                <p>El breve ejemplo anterior, como casi todos los ejemplos, es JavaScript . Es decir, está escrito en JavaScript, pero usa el DOM para acceder al documento y sus elementos. El DOM no es un lenguaje de programación, pero sin él, el lenguaje JavaScript no tendría ningún modelo o noción de páginas web, documentos HTML, documentos SVG y sus componentes. El documento en su conjunto, el encabezado, las tablas dentro del documento, los encabezados de las tablas, el texto dentro de las celdas de la tabla y todos los demás elementos de un documento son partes del modelo de objetos de documento para ese documento. Se puede acceder a todos ellos y manipularlos utilizando el DOM y un lenguaje de programación como JavaScript.</p>
+                <p>El DOM no forma parte del lenguaje JavaScript, sino que es una API web que se utiliza para crear sitios web. JavaScript también se puede utilizar en otros contextos. Por ejemplo, Node.js ejecuta programas JavaScript en una computadora, pero proporciona un conjunto diferente de API, y la API DOM no es una parte central del tiempo de ejecución de Node.js.</p>
+                <p>El DOM fue diseñado para ser independiente de cualquier lenguaje de programación en particular, haciendo que la representación estructural del documento esté disponible desde una API única y consistente. Incluso si la mayoría de los desarrolladores web solo usarán el DOM a través de JavaScript, las implementaciones del DOM se pueden construir para cualquier lenguaje, como lo demuestra este ejemplo de Python:</p>
+
+                <code>
+                    # Python DOM example
+                    import xml.dom.minidom as m
+                    doc = m.parse(r"C:\Projects\Py\chap1.xml")
+                    doc.nodeName # DOM property of document object
+                    p_list = doc.getElementsByTagName("para")
+                </code>
+
+                <p>Para obtener más información sobre las tecnologías involucradas en la escritura de JavaScript en la web, consulte Descripción general de las tecnologías de JavaScript .</p>
+            </article>
+        </section>
+
+        <section class="main-section" id="Accediendo_al_DOM">
+            <header>Accediendo al DOM</header>
+            <article>
+                <p>No tiene que hacer nada especial para comenzar a usar el DOM. Utiliza la API directamente en JavaScript desde dentro de lo que se llama un script , un programa ejecutado por un navegador.</p>
+                <p>Cuando crea un script, ya sea en línea en un script elemento o incluido en la página web, puede comenzar inmediatamente a usar la API para los objetos documentu windowpara manipular el documento en sí, o cualquiera de los diversos elementos en la página web (los elementos descendientes de el documento). Su programación DOM puede ser algo tan simple como el siguiente ejemplo, que muestra un mensaje en la consola usando la console.log()función:</p>
+
+                <code> < body > onload="console.log('Welcome to my home page!');"> < /body ></code>
+
+                <p>Como generalmente no se recomienda mezclar la estructura de la página (escrita en HTML) y la manipulación del DOM (escrito en JavaScript), las partes de JavaScript se agruparán aquí y se separarán del HTML.</p>
+                <p>Por ejemplo, la siguiente función crea un nuevo < h1 >elemento, agrega texto a ese elemento y luego lo agrega al árbol del documento:</p>
+
+                <code>
+                // run this function when the document is loaded
+                window.onload = function() {
+                
+                // create a couple of elements in an otherwise empty HTML page
+                const heading = document.createElement("h1");
+                const heading_text = document.createTextNode("Big Head!");
+                heading.appendChild(heading_text);
+                document.body.appendChild(heading);
+                }
+                </code>
+            </article>
+        </section>
+
+        <section class="main-section" id="Tipos_de_datos_fundamentales">
+            <header>Tipos de datos fundamentales</header>
+            <article>
+                <p>Esta página intenta describir los diversos objetos y tipos en términos simples. Pero hay varios tipos de datos diferentes que se transmiten a través de la API que debe conocer.</p>
+                <p>Nota: Debido a que la gran mayoría del código que usa DOM gira en torno a la manipulación de documentos HTML, es común referirse a los nodos en DOM como elementos , aunque estrictamente hablando no todos los nodos son elementos.</p>
+                <p>La siguiente tabla describe brevemente estos tipos de datos.</p>
+                
+                <ol>
+                    <li>
+                        Document
+                        <ul>
+                            <li>
+                                Cuando un miembro devuelve un objeto de tipo document(por ejemplo, la ownerDocumentpropiedad de un elemento devuelve el objeto documental que pertenece), este objeto es el documentobjeto raíz en sí. El capítulo de referencia DOMdocument describe el documentobjeto.
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        Node
+                        <ul>
+                            <li>
+                                Cada objeto ubicado dentro de un documento es un nodo de algún tipo. En un documento HTML, un objeto puede ser un nodo de elemento pero también un nodo de texto o un nodo de atributo.
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        Element
+                        <ul>
+                            <li>
+                                El elementtipo se basa en node. Se refiere a un elemento o nodo de tipo elementdevuelto por un miembro de la API DOM. En lugar de decir, por ejemplo, que el document.createElement()método devuelve una referencia de objeto a a node, simplemente decimos que este método devuelve el elementque se acaba de crear en el DOM. elementLos objetos implementan la Elementinterfaz DOM y también la Nodeinterfaz más básica , las cuales se incluyen juntas en esta referencia. En un documento HTML, los elementos se mejoran aún más mediante la HTMLElementinterfaz HTML DOM API, así como otras interfaces que describen las capacidades de tipos específicos de elementos.
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        NodeList
+                        <ul>
+                            <li>
+                                A nodeListes una matriz de elementos, como el tipo que devuelve el método document.querySelectorAll(). Elementos de una nodeListse accede por el índice de una de dos maneras: <br>
+                                - list.item (1) <br>
+                                - lista [1] <br>
+                                Estos dos son equivalentes. En el primero, item()está el método único sobre el nodeListobjeto. Este último usa la sintaxis de matriz típica para buscar el segundo elemento de la lista.
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        Attr
+                        <ul>
+                            <li>
+                                Cuando un attributemiembro (por ejemplo, el createAttribute()método) devuelve an , es una referencia de objeto que expone una interfaz especial (aunque pequeña) para los atributos. Los atributos son nodos en el DOM al igual que los elementos, aunque es posible que rara vez los use como tales.
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        NamedNodeMap
+                        <ul>
+                            <li>
+                                A namedNodeMapes como una matriz, pero se accede a los elementos por nombre o índice, aunque este último caso es simplemente una conveniencia para la enumeración, ya que no están en un orden particular en la lista. A namedNodeMaptiene un item()método para este propósito, y también puede agregar y eliminar elementos de un namedNodeMap.
+                            </li>
+                        </ul>
+                    </li>
+                </ol>
+            </article>
+        </section>
+    </main>
+</body>
+<script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+</html>
